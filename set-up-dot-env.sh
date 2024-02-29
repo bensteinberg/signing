@@ -1,15 +1,22 @@
 #!/bin/bash
 
 set -e
-set -x
 
 # this script prepares certs for local development and experimentation
 # using mkcert (https://github.com/FiloSottile/mkcert), and sets up the
 # environment accordingly in .env
 
+# No argument on the command line will create an RSA cert, the default;
+# the argument '-ecdsa' will create an ECDSA cert.
+
+if ! ([ "$1" = "" ] || [ "$1" = "-ecdsa" ]) ; then
+    echo "Bad argument: must be -ecdsa or empty"
+    exit 1
+fi
+
 rm -f cert.pem key.pem fullchain.pem
 
-mkcert -cert-file cert.pem -key-file key.pem example.org
+mkcert $1 -cert-file cert.pem -key-file key.pem example.org
 
 cp cert.pem fullchain.pem
 
