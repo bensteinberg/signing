@@ -162,6 +162,8 @@ def verify(signed_req):
     domain_cert_roots = [
         # Lets Encrypt Root CA X3
         '6d99fb265eb1c5b3744765fcbc648f3cd8e1bffafdc4c2f99b9d47cf7ff1c24f',
+        # Lets Encrypt Intermediate R3
+        '67add1166b020ae61b8f5fc96813c04c2aa589960796865572a3c7e737613dfd'
     ]
 
     # add comma-separated cert roots in an env var; this is useful for testing
